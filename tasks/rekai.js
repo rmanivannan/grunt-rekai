@@ -2,6 +2,8 @@ module.exports = function(grunt) {
   var fs     = require('fs');
   var crypto = require('crypto');
   var fpArr = {};
+
+
   var toBase = function (n,b) {
     b = b == 'base64' ? 64 : (b=='hex' ? 16 : b);
     var str =  "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz+-"; 
@@ -17,6 +19,9 @@ module.exports = function(grunt) {
   grunt.registerMultiTask('rekai', 'Kairēkai(Tamil) - Fingerprint(English) based on the file modified time', function() {
     var target = this.target;
     var configPrefix = this.name + '.' + target;
+    var getOption = function (op) {
+      return grunt.config.getRaw( configPrefix + '.' + op);
+    };
     this.requiresConfig(configPrefix + '.' + 'src');
     var done = this.async();
     var newObj = {
@@ -36,21 +41,27 @@ module.exports = function(grunt) {
       fpArr[target]['fileInputList'].push(file);
       next();
     }, function() {
-      var baseVal = grunt.config.getRaw( configPrefix + '.' + 'baseVal') || 'hex';
+
+      var baseVal = getOption('baseVal') || 'hex';
+      baseVal = (baseVal == "base16") ? "hex" : baseVal;
       var cryptoVal = newObj.md5.digest(baseVal).replace(/\//g,'-');
       var ts =  toBase(newObj.ts,baseVal);
-      var fpResult = grunt.config.getRaw( configPrefix + '.' + 'updateTS') ? ts : cryptoVal;
+
+      var fpResult = getOption('algorithm') == "timeStamp" ? ts : cryptoVal;
+
       save({
         "fingerprint" : fpResult,
         "target"      : target,
-        "filename"    : grunt.config.getRaw( configPrefix + '.' + 'filename'),
-        "template"    : grunt.config.getRaw( configPrefix + '.' + 'template'),
+        "filename"    : getOption('filename'),
+        "template"    : getOption('template'),
+        "action"      : getOption('action')
       }, done);
     });
 
-    creteFingerPrint(grunt.config.getRaw( configPrefix + '.' + 'action'));
+    creteFingerPrint();
 
   });
+  
 
   function save(options, done) {
     var context = {
@@ -64,17 +75,19 @@ module.exports = function(grunt) {
     fpArr[context.target]['content'] = contents;
     fpArr[context.target]['srcFile'] = filename;
     fpArr[context.target]['fp'] = context.rekai;
+    fpArr[context.target]['action'] = options.action;
 
     grunt.file.write(filename, contents);
 
     done();
   }
 
-  function creteFingerPrint (action) {
+  function creteFingerPrint () {
     //delete templates, and rename files
     var templateOb = {};
     for(var i in fpArr){
       var fp = fpArr[i]["fp"];
+      var action = fpArr[i]["action"];
       //grunt.file.delete(fpArr[i]["srcFile"]);
       var ipFileList = fpArr[i]['fileInputList'];
       for (var j in ipFileList) {
@@ -86,12 +99,14 @@ module.exports = function(grunt) {
 
         var newFilePath =  filePath.join('.') + '-' + fp + fileExt;
 
-        if(action == "renameSrc"){
-          grunt.file.write(newFilePath, grunt.file.read(filePathRef))
-          grunt.file.delete(filePathRef);
-        }else if (action =="createSrcCopy") {
-          grunt.file.write(newFilePath, grunt.file.read(filePathRef))
-        };
+        try{
+          if(action == "renameSrc"){
+            grunt.file.write(newFilePath, grunt.file.read(filePathRef))
+            grunt.file.delete(filePathRef);
+          }else if (action =="createSrcCopy") {
+            grunt.file.write(newFilePath, grunt.file.read(filePathRef))
+          };
+        }catch(e){}
 
       };
 
@@ -103,8 +118,6 @@ module.exports = function(grunt) {
       }else{
         templateOb[tempDestPath].push(tempDestCnt);
       }
-
-
     }
     
     for(var i in templateOb){
