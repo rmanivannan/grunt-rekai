@@ -1,6 +1,6 @@
 {
   "name": "grunt-rekai",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Grunt task for Versioning / fingerprint based on the file modified time / Nodejs Crypto md5 algorithm.",
   "main": "tasks/rekai.js",
   "scripts": {
@@ -11,13 +11,15 @@
     "url": "https://github.com/rmanivannan/grunt-rekai.git"
   },
   "keywords": [
-    "Versioning",
+    "versioning",
     "fingerprint",
-    "Grunt",
-    "Crypto",
+    "grunt",
+    "crypto",
+    "file",
+    "assets",
     "md5"
   ],
-  "author": "Manivannan",
+  "author": "Manivannan Radhakrishnan",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/rmanivannan/grunt-rekai/issues"
