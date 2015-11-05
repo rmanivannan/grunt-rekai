@@ -27,7 +27,7 @@ grunt.initConfig({
       algorithm: "timeStamp",
       //"timeStamp"-fingerprint based on the time modified,"md5"-node crypto md5 algorithm based output. default to "md5".
       
-      baseValFp: "base64", 
+      baseVal: "base64", 
       //crypto out-put value in "hex"(base16), "base64". default value - "hex".
       
       action: "createSrcCopy", 
@@ -44,12 +44,15 @@ grunt.loadNpmTasks('grunt-rekai');
 
 ## Options
 
- - algorithm(optional): Datatype string which decides algorithm to generate fingerprint value, "timeStamp" - fingerprint based on the time modified,"md5" - node crypto md5 algorithm based output. default to "md5".
+ - algorithm(optional): Datatype string which decides algorithm to generate fingerprint value, "timeStamp" - fingerprint based on time modified,"md5" - node crypto md5 algorithm based output. default to "md5".
 
- - baseValFp(optional): Datatype string which decides base value for the out put fingerprinting value in "hex" or "base16", "base64". default value "hex" or "base16"
+ - baseVal(optional): Datatype string which decides base value for out put fingerprinting value in "hex" or "base16", "base64". default value "hex" or "base16"
 
  - action(optional): Datatype string which decides whether to rename or create copy file along fingerprint value. 
 
  - template(mandatory): Datatype string, template to create fingerprinting value. 
 
  - filename(mandatory): Datatype string, file path to save the fingerprint output value.
+
+###Note:
+As part of base value conversion,character "/" is replaced by "-" to avoid file directory structure confusion. 
