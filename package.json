@@ -1,6 +1,6 @@
 {
   "name": "grunt-rekai",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Grunt task for Versioning / fingerprint based on the file modified time / Nodejs Crypto md5 algorithm.",
   "main": "tasks/rekai.js",
   "scripts": {
