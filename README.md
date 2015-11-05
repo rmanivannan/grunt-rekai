@@ -1,4 +1,4 @@
-# Kairēkai(Tamil) - Fingerprint(English) 
+# Rēkai(Tamil) - Fingerprint(English) 
 Grunt task for Fingerprinting based on the file modified time / Nodejs Crypto md5 algorithm.
 This Grunt task can be used for assets versioning  
 
