@@ -44,12 +44,12 @@ grunt.loadNpmTasks('grunt-rekai');
 
 ## Options
 
-algorithm(optional): Datatype string which decides algorithm to generate fingerprint value, "timeStamp" - fingerprint based on the time modified,"md5" - node crypto md5 algorithm based output. default to "md5".
+ - algorithm(optional): Datatype string which decides algorithm to generate fingerprint value, "timeStamp" - fingerprint based on the time modified,"md5" - node crypto md5 algorithm based output. default to "md5".
 
-baseValFp(optional): Datatype string which decides base value for the out put fingerprinting value in "hex" or "base16", "base64". default value "hex" or "base16"
+ - baseValFp(optional): Datatype string which decides base value for the out put fingerprinting value in "hex" or "base16", "base64". default value "hex" or "base16"
 
-action(optional): Datatype string which decides whether to rename or create copy file along fingerprint value. 
+ - action(optional): Datatype string which decides whether to rename or create copy file along fingerprint value. 
 
-template(mandatory): Datatype string, template to create fingerprinting value. 
+ - template(mandatory): Datatype string, template to create fingerprinting value. 
 
-filename(mandatory): Datatype string, file path to save the fingerprint output value.
+ - filename(mandatory): Datatype string, file path to save the fingerprint output value.
