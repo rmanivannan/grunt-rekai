@@ -20,14 +20,36 @@ grunt.initConfig({
       src: [
         'resources/js/assetsName.js'
       ],
-      filename: 'views/fingerprint-fpOldieCommon.jsp',
-      updateTS: true,    // by default false, true - fingerprint based on the time modified, false - node crypto md5 algorithm based output.
-      baseVal: "base64", // by default hex, hex, base64
-      action:false, // renameSrc, createSrcCopy, default / false - just extract fingetprint  
-      template: "String fpOldieCommon = \"<%= rekai %>\"; " //mandatory <%= rekai %> will be replaced with fingerprint value
+      
+      filename: 'fingerprint.txt',
+      //file where to save fingerprint template output
+      
+      algorithm: "timeStamp",
+      //"timeStamp"-fingerprint based on the time modified,"md5"-node crypto md5 algorithm based output. default to "md5".
+      
+      baseValFp: "base64", 
+      //crypto out-put value in "hex"(base16), "base64". default value - "hex".
+      
+      action: "createSrcCopy", 
+      //"renameSrc","createSrcCopy","none". default - false - just extract fingetprint & it doesnt rename or copy the file. 
+      
+      template: "String fpOldieCommon = \"<%= rekai %>\"; "
+      //mandatory <%= rekai %> will be replaced with fingerprint value
     }
   }
 });
 grunt.loadNpmTasks('grunt-rekai');
 
 ```
+
+## Options
+
+algorithm(optional): Datatype string which decides algorithm to generate fingerprint value, "timeStamp" - fingerprint based on the time modified,"md5" - node crypto md5 algorithm based output. default to "md5".
+
+baseValFp(optional): Datatype string which decides base value for the out put fingerprinting value in "hex" or "base16", "base64". default value "hex" or "base16"
+
+action(optional): Datatype string which decides whether to rename or create copy file along fingerprint value. 
+
+template(mandatory): Datatype string, template to create fingerprinting value. 
+
+filename(mandatory): Datatype string, file path to save the fingerprint output value.
