@@ -1,0 +1,25 @@
+{
+  "name": "example-grunt-rekai",
+  "version": "0.0.1",
+  "description": "Example Grunt task for Versioning / fingerprint based on the file modified time / Nodejs Crypto md5 algorithm.",
+  "main": "",
+  "keywords": [
+    "versioning",
+    "fingerprint",
+    "grunt",
+    "crypto",
+    "file",
+    "assets",
+    "md5"
+  ],
+  "devDependencies": {
+    "grunt-rekai": "^1.0.0",
+    "grunt": "^0.4.5"
+  },
+  "author": "Manivannan Radhakrishnan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rmanivannan/grunt-rekai/issues"
+  },
+  "homepage": "https://github.com/rmanivannan/grunt-rekai"
+}
