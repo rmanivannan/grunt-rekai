@@ -1,5 +1,4 @@
 var fs = require('fs');
-var grunt = require('grunt');
 var assert = require('assert');
 
 describe('grunt-rekai', function() {
@@ -9,6 +8,7 @@ describe('grunt-rekai', function() {
   });
   it('Should contain correct fingerprint value.', function() {
     var fileCnt = fs.readFileSync(filename,'utf8');
+    console.log(fileCnt);
     assert.ok(fileCnt.indexOf('Ao43b9f1RlduffmZRujo7g==') >= 0);
     assert.ok(fileCnt.indexOf('15120688720') >= 0);
     assert.ok(fileCnt.indexOf('ce132772dca7b5f76ec00ab4d7959712') >= 0);
