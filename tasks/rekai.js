@@ -99,16 +99,23 @@ module.exports = function(grunt) {
 
         var newFilePath =  filePath.join('.') + '-' + fp + fileExt;
 
+        //avoid multiple fingerprint value on file name
+        var regex = new RegExp(('-' + fp+'-' + fp),"g");
+        newFilePath = newFilePath.replace(regex, ('-'+fp));
+
         try{
           if(action == "renameSrc"){
-            grunt.file.write(newFilePath, grunt.file.read(filePathRef))
+            var tempFileCnt = grunt.file.read(filePathRef);
             grunt.file.delete(filePathRef);
+            grunt.file.write(newFilePath, tempFileCnt)
           }else if (action =="createSrcCopy") {
             grunt.file.write(newFilePath, grunt.file.read(filePathRef))
           };
         }catch(e){}
 
       };
+
+      fpArr[i]['fileInputList'] = [];
 
 
       var tempDestPath = fpArr[i]['srcFile'];
