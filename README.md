@@ -1,4 +1,7 @@
 # Rēkai(Tamil) - Fingerprint(English) 
+
+[![Build Status](https://travis-ci.org/rmanivannan/grunt-rekai.svg?branch=master)](https://travis-ci.org/rmanivannan/grunt-rekai)
+
 Grunt task for Fingerprinting based on the file modified time / Nodejs Crypto md5 algorithm.
 This Grunt task can be used for assets versioning  
 
@@ -53,6 +56,12 @@ grunt.loadNpmTasks('grunt-rekai');
  - template(mandatory): Datatype string, template to create fingerprinting value. 
 
  - filename(mandatory): Datatype string, file path to save the fingerprint output value.
+
+## advantage of grunt-rekai
+
+- Provides option to rename and create new copy of base file
+
+- Shorter fingerprint # value, based on time modification  
 
 ###Note:
 As part of base value conversion,character "/" is replaced by "-" to avoid file directory structure confusion. 
