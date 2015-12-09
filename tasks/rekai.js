@@ -133,5 +133,6 @@ module.exports = function(grunt) {
       grunt.file.write(tempFilePath, tempFileCnt)
       grunt.log.writeln('File ' + tempFilePath.cyan + ' updated.');
     }
+    fpArr = {};
   }
 };
