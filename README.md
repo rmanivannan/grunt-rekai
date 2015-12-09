@@ -1,6 +1,7 @@
 # Rēkai(Tamil) - Fingerprint(English) 
 
 [![Build Status](https://travis-ci.org/rmanivannan/grunt-rekai.svg?branch=master)](https://travis-ci.org/rmanivannan/grunt-rekai)
+[![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
 Grunt task for Fingerprinting based on the file modified time / Nodejs Crypto md5 algorithm.
 This Grunt task can be used for assets versioning  
