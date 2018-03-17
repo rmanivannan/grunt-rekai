@@ -64,5 +64,5 @@ grunt.loadNpmTasks('grunt-rekai');
 
 - Shorter fingerprint # value, based on time modification  
 
-###Note:
+### Note:
 As part of base value conversion,character "/" is replaced by "-" to avoid file directory structure confusion. 
